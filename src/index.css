@@ -1,0 +1,32 @@
+#drum-machine {
+  background-color: #ffb942;
+}
+#display {
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+}
+
+#drum-pads {
+  height: 75vh;
+  width: 100vw;
+  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.drum-pad {
+  border: 1px solid black;
+  height: 20vh;
+  width: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vw;
+  background-color: #84eeff;
+}
