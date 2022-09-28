@@ -5,7 +5,7 @@ function App() {
   const [display,setDisplay]=useState("Click pad or Press a Key")
 
   const handleDisplay =()=>{ 
-     setDisplay( display )
+     setDisplay(display)
     }
 
   return (
@@ -18,6 +18,8 @@ function App() {
             letter={d.letter}
             src={d.src}
             handleDisplay={handleDisplay}
+            display={display}
+            setDisplay={setDisplay}
           />   
          ))}</div>
     </div>

@@ -1,53 +1,49 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
 
-const DrumPad = ({key,id,letter,src,handleDisplay,audio,play,currentTime}) => {
+const DrumPad = ({id,letter,src,setDisplay,display}) => {
 
-   
-    
-    useEffect(()=>{
-        console.log(audio)
-        
-        document.addEventListener('keydown',handleKeydown)
-        window.focus()
-      },[])
-      
-      useEffect(()=> {
-       return ()=>{
-        document.removeEventListener('keydown', handleKeydown) 
-       }
-     },[])
-      
-      const handleKeydown = e => {
-        if(e.keyCode === letter.charCodeAt()) {
+  const [audio] = useState(new Audio(src));
+  const [playing, setPlaying] = useState(false);
 
-          audio.play()
-          audio.currentTime = 0
-          handleDisplay(id)
-        }
-      }
-     
-      const handleClick = () => {
-        play()
-        currentTime = 0
-        handleDisplay(id)
-      }
+  //const toggle = () => setPlaying(!playing);
+
+  useEffect(() => {
+      playing ? audio.play() : audio.pause();
+      },
+    [audio,playing]
+  );
+
+  useEffect(() => {
+    audio.addEventListener('ended', () => setPlaying(false));
+    return () => {
+      audio.removeEventListener('ended', () => setPlaying(false));
+    };
+  }, [audio]);
+
+  const handleClick=()=>{
+    audio.play()
+    audio.currentTime=0
+    setDisplay(id)
   
-    return (
-        <div 
-        className='drum-pad' 
-        id={id}
-        onClick={handleClick}
-    >
-      <h1>{letter}</h1>
-      <audio id={letter}
-             className='clip'
-             src={src}
-      ref={ref => audio=ref }       
-        ></audio>
-    </div>
-  )
+  }
+  
+  return (
+    <div 
+    className='drum-pad' 
+    id={id}
+    onClick={handleClick}
+>
+  <h1>{letter}</h1>
+  <audio id={letter}
+         className='clip'
+         src={src}
+                 
+    ></audio>
+</div>
+)    
+  
 }
 
-export default DrumPad
+export default DrumPad;
