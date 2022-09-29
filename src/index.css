@@ -36,6 +36,9 @@
   align-items: center;
   cursor: pointer;
 }
+.drum-pad:hover{
+  background-color:lime;
+}
 @media screen and (max-width: 1024px){
   #drum-pads{
     grid-template-columns: repeat(2,1fr);
